@@ -1,1 +1,13 @@
 # sms_spam_detector
+
+In this repo, we are developing an application to classify whether an SMS text message is spam or legitimate (ham). We're using a solution and converting it into a function to create a linear Support Vector Classification (SVC) model. We'll create a Gradio app to host it, which will provide a user interface for users to test text messages they've received. 
+
+We begin by creating the `sms_classification` function which takes in the parameter `sms_text_df`. This function will preprocess the data, creating an `X` variable with feature column `text_message` and the `y` variable will be the target column `label`, both from the `sms_text_df`. Next, we split our `X` and `y` into training and testing data. Next, we create a Pipeline with the `pipeline` module and `TfidfVectorizer` and `LinearSVC`, our extraction method and classification model, respectively, which allows us to streamline our data processing and model training. We fit our model with the training data and the `sms_classification` fn returns our model. We load up our `sms_text_df` and check it. We set the result of the function call `sms_classification` with `sms_text_df` passed in as the variable `text_clf`. Following this, we create our `sms_prediction` function which will determine if a text message is spam or not (ham). It checks the `predicted_text` and returns a statement saying it is spam or not. Lastly, we use `Gradio` and create an app, passing in the `sms_prediction` fn for `fn`, and both the `inputs` and `outputs` parameters are `Textbox` with corresponding labels. Now we have a `Gradio` interface for users to try out their text messages. The messages were tested, with the first two labeled `ham` as expected and the last two were labeled `spam`.
+
+# Sources
+
+Xpert Learning Assistant - Various questions such as checking how to access the message from the `predicted_text` variable, which was accessing the first element in it. </br>
+ helpful for data preprocessing, buidling the input, shared, and output layers, additionally for building and compiling the model and retrieving the model summary</br>
+Module-21-Transformers/Class-1/Activities/06-Par_Sentence_Transformer_SMS_Classification/Solved/sms_ham_spam_similarity_solution.ipynb - Reference for setup since this exercise had a similar goal of identifying text spam </br>
+Module-21-Transformers/Class-3/Activities/06-Stu_Gradio_Question_Answer_Textbox/Solved/gradio_question_answer_textbox_solution.ipynb - Pipeline and Gradio implementation </br>
+Module-21-Transformers/Class-3/Activities/02-Stu_Gradio_Pizza_Order/Solved/gradio_pizza_order_solution.ipynb - function implementation with Gradio app </br>
